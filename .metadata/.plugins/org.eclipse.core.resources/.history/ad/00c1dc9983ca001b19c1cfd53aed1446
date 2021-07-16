@@ -1,0 +1,143 @@
+<%@page import="example.Festival"%>
+<%@page import="example.Festival_DBManager"%>
+<%@ page contentType = "text/html;charset=utf-8" %>
+<%@ page import="java.util.ArrayList"%>
+
+<%
+    Festival_DBManager fsdm= new Festival_DBManager();
+    ArrayList<Festival> list = fsdm.SelectAllFestival();
+    int[] CountArray = new int[12];
+    for(int i =0;i<list.size();i++)
+    {
+    	System.out.println(list.get(i).getFes_start().toString().substring(5,7));	
+    	CountArray[Integer.parseInt((""+list.get(i).getFes_start()).substring(5,7))]++;
+    }
+//     (""+list.get(i).getFes_start()).substring(5,7)
+%>
+
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <script type="text/javascript">   
+        // 자동으로 div 태그 추가+ 클래스
+    function addDiv(){
+        d3.select("body")
+            .append("div")
+                .attr("class","blue box")
+    }  
+    </script>
+<head>
+<meta charset="UTF-8">
+<title>달력 테스트</title>
+</head>
+<body>
+
+    <div id="secondArea" class="container"></div>
+   
+            <!-- 처음 박스 색 -->
+    <script type="text/javascript">
+        d3.selectAll("div") // <-- A
+            .attr("class", "red box"); // <-- B
+            
+            
+    </script>
+    <div>
+		<div id="month01" class="box"></div>
+   	 	<div id="month02" class="box"></div>
+    	<div id="month03" class="box"></div>
+    	<div id="month04" class="box"></div>
+    	<div id="month05" class="box"></div>
+    	<div id="month06" class="box"></div>
+    	<div id="month07" class="box"></div>
+    	<div id="month08" class="box"></div>
+    	<div id="month09" class="box"></div>
+    	<div id="month10" class="box"></div>
+    	<div id="month11" class="box"></div>
+    	<div id="month12" class="box"></div>
+	</div>
+        <!-- 실제 데이터 삽입 -->
+    <script type="text/javascript">
+        var data=[];
+      
+        <%
+        for(int i = 0; i <list.size();i++){
+            %>        
+//                 addDiv();
+                data.push([{ fes_idx:<%=list.get(i).getFes_idx()%> , fes_name:'<%=list.get(i).getFes_name()%>' , fes_start:'<%=list.get(i).getFes_start()%>',fes_end:'<%=list.get(i).getFes_end()%>'}]);
+            <%
+        }
+        %>
+        
+        var monthFes=[];
+        <%
+        for(int i = 0; i <12;i++){
+            %>        
+                monthFes.push([<%=CountArray[i]%>]);
+            <%
+        }
+        %>
+        
+        function render(data,selectedTag) { // <- B
+            // Enter
+            d3.select(selectedTag).selectAll("div.h-bar") // <- C
+                .data(data) // <- D
+                .enter() // <- E
+                    .append("div") // <- F
+                        .attr("class", "h-bar")
+                    .append("span"); // <- G
+
+         // Update
+         d3.select(selectedTag).selectAll("div.h-bar")
+            .data(data) 
+                .style("width", function (d) { // <- H
+                    console.log(d[0].fes_idx)
+                    return (d[0].fes_idx * 30) + "px";
+                })
+                .select("span") // <- I
+                    .text(function (d) {
+                        return d[0].fes_name;
+                    }); 
+            
+            
+            
+    }
+        
+    function drawFestival(data,selectedTag) { // <- B
+            // Enter
+            d3.select(selectedTag).selectAll("div.h-bar") // <- C
+                .data(data) // <- D
+                .enter() // <- E
+                    .append("div") // <- F
+                        .attr("class", "h-bar")
+                    .append("span"); // <- G
+
+         // Update
+         d3.select(selectedTag).selectAll("div.h-bar")
+            .data(data) 
+                .style("width", function (d) { // <- H
+//                     console.log(d[0].fes_idx)
+                    return 20+(d * 10) + "px";
+                })
+                .select("span") // <- I
+                    .text(function (d) {
+                        return d;
+                    }); 
+            
+            
+            
+    }
+    <%for(int i =0; i <list.size();i++){%>
+    	render('<%=list.get(i).getFes_name()%>',"#month<%=list.get(i).getFes_start().toString().substring(5,7)%>"); 
+ 	<%}%>
+//     drawFestival(monthFes,"#secondArea");
+     <%for(int i =0; i <12;i++){%>
+     	drawFestival(monthFes,"#secondArea"); 
+     <%}%>
+    
+// 	render(data,"#secondArea");
+</script>
+
+</body>
+</html>

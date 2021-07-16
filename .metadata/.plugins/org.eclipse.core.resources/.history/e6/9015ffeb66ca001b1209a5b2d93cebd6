@@ -1,0 +1,24 @@
+package example;
+
+public class Data {
+    //랭킹 전체에 대한 클래스
+    public String classific;
+    public String p_name;
+    public int totalAmount;
+    public int ranking;
+    public Data(String classific,String p_name,int totalAmount,int ranking){
+        this.classific=classific;
+        this.p_name=p_name;
+        this.totalAmount=totalAmount;
+        this.ranking=ranking;
+    }
+    public String getClassific(){
+        return classific;
+    }
+    public String getP_name(){
+        return p_name;
+    }
+    public int getTotalAmount(){
+        return totalAmount;
+    }
+}

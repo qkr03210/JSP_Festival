@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<div class="container">		
+		<div class="col-lg-4">	
+			
+			<div class="jumbotron" style="padding-top: 20px;">
+				<form method="post" action="signinAction.jsp">
+					<h3 style="text-align: center;">main</h3>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="ID" name="userID" maxlength="20">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="PWD" name="userPassword" maxlength="20">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="NAME" name="userName" maxlength="20">
+					</div>
+					
+					</div>
+					<div class="form-group">
+						<input type="phone" class="form-control" placeholder="PHONE" name="userPhone" maxlength="20">
+					</div>
+					<input type="submit" class="btn btn-primary form-control" value="SIGNIN">
+				</form>
+			</div>
+		</div>	
+	
+
+
+</body>
+</html>

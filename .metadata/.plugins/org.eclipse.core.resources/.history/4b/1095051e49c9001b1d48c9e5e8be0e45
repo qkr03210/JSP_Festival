@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="main_title">
+		타이틀
+		<div class="col">
+			<li><a href="map_category.jsp?x=35.88366466602675&y=128.59598136936447&z=https://dimf.or.kr/portal/contents.do?mId=0101000000">1.대구국제 뮤지컬 페스티벌 </a></li>			
+			<li><a href="map_category.jsp?x=35.847921831336265&y=128.5577828&z=https://www.chimacfestival.com/">2.치맥 페스티벌 </a></li>			
+			<li><a href="map_category.jsp?x=35.846132166089646&y=128.6241294609083&z=https://www.jung.daegu.kr/new/culture/pages/festival/page.html?mc=0823">3.대구 동성로 축제 </a></li>
+			<li><a href="map_category.jsp?x=35.86894966365388&y=128.5807932625065&z=https://blog.naver.com/daegu_news/221664679957">4.서문시장글로벌대축제 </a></li>
+        	<li><a href="map_category.jsp?x=35.876890689793484&y=128.59576488384766&z=https://m.blog.naver.com/PostView.naver?blogId=dgjunggu&logNo=221679496018&proxyReferer=https:%2F%2Fwww.google.com%2F">5.교동시장한마음 축제 </a></li>
+            <li><a href="map_category.jsp?x=35.82847005751394&y=128.61763623971817&z=http://www.ssfestival.net/">6.수성못 페스티벌 </a></li>
+
+		</div>
+
+	</div>
+
+
+
+
+
+
+</body>
+</html>

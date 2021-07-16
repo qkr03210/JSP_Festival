@@ -1,0 +1,163 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="kb.BBS"%>
+<%@page import="kb.ConnMysql"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>커뮤니티</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- all css here -->
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/pe-icon-7-stroke.css">
+        <link rel="stylesheet" href="../css/owl.carousel.css">
+		<link rel="stylesheet" href="../css/magnific-popup.css">
+		<link rel="stylesheet" href="../css/meanmenu.css">
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+        <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+        <link href="../styles.css" rel="stylesheet" />
+</head>
+<body>
+	<header>
+			<!-- main-menu-area-start -->
+			<div class="header-top-area black-bg hidden-xs" >
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-sm-6">
+							<ul class="top-right" style="margin-bottom:0px">
+								<li>
+									<i class="fa fa-envelope"></i>
+									<span id="userId">qkr03210@gmail.com</span>
+								</li>
+								<li>
+									<i class="fa fa-phone"></i>
+									<span>+82 10 9774 5263</span>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-6 col-sm-6 hidden-xs">
+							<div class="header-icon floatright" >
+<!-- 								<a href="https://github.com/dhw1009/JspTeamproject" ><i class="fa fa-github" ></i></a> -->
+								<%
+									Object id = (String) session.getAttribute("id");
+									if (id != null) {
+								%>
+									<a style="color:white;"><%=id%>님, 환영합니다!</a>
+									<a class="nav-link" href="../login/logout.jsp">Log Out</a>
+                        		<%}else{ %>
+                                    <a href="../login/signin.jsp">Sign Up</a>
+                        			<a href="../login/login.jsp">Log In</a>
+                          		<%} %>
+							</div>							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main-menu-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-sm-2">
+							<div class="logo">
+								<a href="../index.jsp"><img src="../img/logo/1.png" alt="" /></a>
+							</div>
+						</div>
+						<div class="col-md-9 col-sm-10">
+							<div class="main-menu floatright">
+								<nav>
+									<ul>
+										<li class="active"><a href="../index.jsp">Home</a>
+										</li>
+										<li><a href="../ViewAllFes.jsp">festival</a></li>
+										<li><a href="../bbs/bbs_sample.jsp">community</a></li>
+										<li><a href="../team.html">team</a></li>
+									</ul>
+								</nav>
+							</div>
+							<div class="mobile-menu-area"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- main-menu-area-end -->
+			<!-- breadcrumb-area-start -->
+			<div class="breadcrumb-area bg-color ptb-100">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="breadcrumb-title text-center">
+								<h1>커뮤니티</h1>
+								<div class="breadcrumb-menu">
+									<ul>
+										<li><a href="../index.jsp">home</a></li>
+										<li>community</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!-- breadcrumb-area-end -->
+
+		</header>
+        <div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th width="700px">제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+		<tbody>
+
+<%
+ConnMysql mysql = new  ConnMysql();
+ArrayList<BBS> list = new ArrayList<BBS>();
+list=mysql.selectBBS();
+String w_id="";
+String text="";
+String title="";
+String idx="";
+
+for(int i=0;i<list.size();i++){
+	BBS bbs = list.get(i);
+	w_id=bbs.getId();
+	text=bbs.getText();
+	title=bbs.getTitle();
+	idx=bbs.getIdx();
+%>
+
+
+<tr onclick="location.href='readbbs.jsp?id=<%=w_id%>&text=<%=text%>&title=<%=title%>&idx=<%=idx%>'">
+<th id="T_idx"><%out.print(bbs.getIdx()); %></th>
+	<th id="T_title" style="cursor:pointer"><%out.print(bbs.getTitle()); %></th>
+	<th><%out.print(bbs.getId()); %></th>
+	<th><%out.print(bbs.getDate()); %></th>
+</tr>
+<%}%>
+
+</tbody>
+</table>
+<div class="floatright text-center">
+							<% if(id!=null){ %>
+                    			<a class="btn btn-primary btn-xl rounded-pill mt-5" onclick="var windowObj = window.open('write.jsp', '', 'width=600 height=400')" >글쓰기</a>
+            				<%}else{%>
+                				<a class="btn btn-primary btn-xl rounded-pill mt-5" onclick="alert('로그인 하세요.')" >글쓰기</a>
+           					<%} %>
+						</div>
+</div>
+						
+</body>
+</html>
