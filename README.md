@@ -5,10 +5,10 @@
 
 | 화면 | 사진 |
 |:---:|---|
-|메인 화면|<img src="img/main.PNG" width="300" height="400">|
-|달력 날짜 선택<br>(팝업창)|<img src="img/cal_popup.PNG" width="300" height="200">|
-|축제 상세 페이지|<img src="img/fest_info.PNG" width="300" height="300">|
-|게시판|<img src="img/board.PNG" width="300" height="300">|
+|메인 화면|<img src="img/main.png" width="300" height="400">|
+|달력 날짜 선택<br>(팝업창)|<img src="img/cal_popup.png" width="300" height="200">|
+|축제 상세 페이지|<img src="img/fest_info.png" width="300" height="300">|
+|게시판|<img src="img/board.png" width="300" height="300">|
 
 ## # 개요
 
