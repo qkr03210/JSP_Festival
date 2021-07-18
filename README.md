@@ -1,5 +1,7 @@
 # # JSP_Festival
 팀프로젝트 공유 페이지
+공공데이터포털에서 대구 축제 csv파일을 받아서 
+https://www.data.go.kr/index.do
 
 ## # JSP_Festival page
 
